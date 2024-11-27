@@ -11,9 +11,9 @@ async function getWeather() {
   if (city) {
     try {
       const weatherData = await getWeatherData(city);
+
       displayWeather(weatherData);
     } catch (error) {
-      console.log(error);
       displayError(error.message);
     }
   } else {
@@ -24,19 +24,27 @@ async function getWeather() {
 async function getWeatherData(city) {
   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
-  const response = await fetch(apiUrl);
-  if (!response.ok) {
-    const message = `An error has occurred: ${response.status}`;
-    throw new Error(message);
+  try {
+    const response = await fetch(apiUrl);
+    // Parse the response JSON
+    const data = await response.json();
+    // Handle API response errors (like 404)
+    if (!response.ok) {
+      throw new Error(data.message || `Error: ${response.status}`);
+    }
+
+    return data; // Return the parsed weather data
+  } catch (error) {
+    throw new Error(`${error.message}`);
   }
-  return await response.json();
 }
 
 function displayWeather(data) {
   const weatherIcon = getWeatherIcon(data.weather[0].main);
   let sunrise = new Date(data.sys.sunrise * 1000);
   let sunset = new Date(data.sys.sunset * 1000);
-
+  let coordnates = data.coord;
+  let icon = data.weather[0].icon;
   weatherInfo.innerHTML = `
         <h2 class="city-name">${data.name}, ${data.sys.country}</h2>
         <div class="icon">${weatherIcon}</div>
@@ -44,11 +52,15 @@ function displayWeather(data) {
         <p class="weather-description">Weather: ${
           data.weather[0].description
         }</p>
+        <!--<img src="http://openweathermap.org/img/wn/${icon}.png" alt="weather icon">-->
         <p class="humidity">Humidity: ${data.main.humidity}%</p>
         <p class="wind-speed">Wind Speed: ${data.wind.speed} m/s</p>
         <p class="pressure">Pressure: ${data.main.pressure} hPa</p>
         <p class="sunrise">Sunrise: ${sunrise.toLocaleTimeString()}</p>
         <p class="sunset">Sunset: ${sunset.toLocaleTimeString()}</p>
+        <p class="coordinates">Coordinates: ${coordnates.lat.toFixed(
+          2
+        )}, ${coordnates.lon.toFixed(2)}</p>
     `;
 }
 
