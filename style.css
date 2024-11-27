@@ -1,0 +1,139 @@
+body {
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  flex-direction: column; /* Allows the body to use Flexbox layout */
+  justify-content: space-between; /* Ensures space between header, content, and footer */
+  min-height: 100vh; /* Full viewport height */
+  margin: 0;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  color: #fff;
+}
+
+.weather-app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: auto;
+  height: auto; /* Allows the card height to adjust based on its content */
+}
+
+/* Input and button styles remain the same */
+.weather-app input {
+  padding: 15px;
+  width: 80%;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 25px;
+  outline: none;
+  font-size: 16px;
+}
+
+.weather-app button {
+  padding: 15px 30px;
+  border: none;
+  background-color: #ff6b6b;
+  color: #fff;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.weather-app button:hover {
+  background-color: #ff4757;
+}
+
+.weather-info {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.weather-info .city-name {
+  font-size: 2em;
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+
+.weather-info p {
+  font-size: 18px;
+  margin: 5px 0;
+  text-align: center;
+}
+
+.weather-info .icon {
+  font-size: 4em !important;
+
+  margin: 3px 0;
+}
+
+.weather-info .temp-display {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 5px 0;
+  text-align: center;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+  .weather-app {
+    padding: 20px;
+  }
+
+  .weather-app input,
+  .weather-app button {
+    width: 80%;
+    font-size: 14px;
+  }
+
+  .weather-info h2 {
+    font-size: 20px;
+  }
+
+  .weather-info p {
+    font-size: 16px;
+  }
+
+  .weather-info .icon {
+    font-size: 40px;
+  }
+}
+
+/* Footer styles */
+footer {
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  width: 100%;
+  position: relative;
+}
+
+footer p {
+  margin: 7px 0;
+}
+
+.weather-description,
+.humidity,
+.wind-speed,
+.pressure,
+.sunrise,
+.sunset {
+  font-size: 1.5em;
+  margin: 5px 0;
+}
+
+.error {
+  font-size: 1.5em;
+}
