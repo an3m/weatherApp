@@ -49,9 +49,8 @@ function displayWeather(data) {
         <h2 class="city-name">${data.name}, ${data.sys.country}</h2>
         <div class="icon">${weatherIcon}</div>
         <p class="temp-display">${data.main.temp.toFixed(1)}°C</p>
-        <p class="weather-description">Weather: ${
-          data.weather[0].description
-        }</p>
+        <p class="weather-description">Weather: ${data.weather[0].description
+    }</p>
         <!--<img src="http://openweathermap.org/img/wn/${icon}.png" alt="weather icon">-->
         <p class="humidity">Humidity: ${data.main.humidity}%</p>
         <p class="wind-speed">Wind Speed: ${data.wind.speed} m/s</p>
@@ -59,8 +58,8 @@ function displayWeather(data) {
         <p class="sunrise">Sunrise: ${sunrise.toLocaleTimeString()}</p>
         <p class="sunset">Sunset: ${sunset.toLocaleTimeString()}</p>
         <p class="coordinates">Coordinates: ${coordnates.lat.toFixed(
-          2
-        )}, ${coordnates.lon.toFixed(2)}</p>
+      2
+    )}, ${coordnates.lon.toFixed(2)}</p>
     `;
 }
 
